@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://dm6p2ir1u1icy"]
+
+[ext_resource type="Script" path="res://pipe.gd" id="1_mu5uh"]
+[ext_resource type="Texture2D" uid="uid://7jpdoa6arotp" path="res://assets/hood2.png" id="2_h4c1a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_weuh6"]
+size = Vector2(81, 461.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kbarg"]
+size = Vector2(146, 133.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s2di7"]
+size = Vector2(74, 493)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6clce"]
+size = Vector2(146.5, 99.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iuaeq"]
+size = Vector2(20, 260)
+
+[node name="pipe" type="Area2D" groups=["pipes"]]
+script = ExtResource("1_mu5uh")
+
+[node name="lower" type="Sprite2D" parent="."]
+position = Vector2(2.5, 75.6703)
+scale = Vector2(0.622093, 0.895604)
+texture = ExtResource("2_h4c1a")
+offset = Vector2(0, 380)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 348.75)
+shape = SubResource("RectangleShape2D_weuh6")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-3, 643)
+shape = SubResource("RectangleShape2D_kbarg")
+
+[node name="upper" type="Sprite2D" parent="."]
+position = Vector2(4, -73.1868)
+scale = Vector2(0.621512, 0.925824)
+texture = ExtResource("2_h4c1a")
+offset = Vector2(0, -380)
+flip_v = true
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(1, -366.5)
+shape = SubResource("RectangleShape2D_s2di7")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
+position = Vector2(-1.25, -666.75)
+shape = SubResource("RectangleShape2D_6clce")
+
+[node name="scoreA" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="scoreA"]
+position = Vector2(73, -8)
+shape = SubResource("RectangleShape2D_iuaeq")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="scoreA" to="." method="_on_score_a_body_entered"]
